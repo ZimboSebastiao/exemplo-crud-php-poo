@@ -1,10 +1,13 @@
 <?php
 use ExemploCrudPoo\Produto;
+use ExemploCrudPoo\Utilitarios;
+
 require_once "../vendor/autoload.php";
 
 $produto = new Produto; 
 
 $listaDeProdutos = $produto->lerProdutos();
+Utilitarios::formatarPreco();
 
 ?>
 <!DOCTYPE html>
@@ -28,7 +31,7 @@ $listaDeProdutos = $produto->lerProdutos();
                 <article class="shadow p-2">
                     <h3> <?=$produto["produto"]?> </h3>
                     <h4> <?=$produto["fabricante"]?> </h4>
-                    <p><b>Preço: <?=$produto["preco"]?></b>  </p>
+                    <p><b>Preço:<?=formatarPreco($produto["preco"])?></b>  </p>
                     <p><b>Quantidade:</b> <?=$produto["quantidade"]?> </p>
 
                     <hr>
