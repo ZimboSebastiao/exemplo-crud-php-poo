@@ -5,7 +5,7 @@ require_once "../vendor/autoload.php";
 $fabricante = new Fabricante;
 
 $listaDeFabricantes = $fabricante->lerFabricantes();
-$quantidade = count($listaDeFabricantes);
+$quantidade = count($listaDeFabricantes);  
 ?>
 <pre><?=var_dump($fabricante)?></pre>
 <!DOCTYPE html>
