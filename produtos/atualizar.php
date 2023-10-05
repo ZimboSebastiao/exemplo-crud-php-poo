@@ -9,7 +9,7 @@ $produto = new Produto;
 $listaDeFabricantes = $fabricante->lerFabricantes();
 
 $produto->setId($_GET['id']);
-$dadosProduto = $produto->lerUmProduto();
+$dadosProduto = $produto->lerUm();
 
 if(isset($_POST['atualizar'])){
     $produto->setNome($_POST['nome']);
@@ -18,7 +18,7 @@ if(isset($_POST['atualizar'])){
     $produto->setFabricanteId($_POST['fabricante']);
     $produto->setDescricao($_POST['descricao']);
     
-    $produto->atualizarProduto();
+    $produto->atualizar();
 
     header("location:visualizar.php");
 }

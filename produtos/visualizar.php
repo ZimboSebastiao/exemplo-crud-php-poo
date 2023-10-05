@@ -28,7 +28,7 @@ $listaDeProdutos = $produto->lerProdutos();
                 <article class="shadow p-2">
                     <h3> <?=$produto["produto"]?> </h3>
                     <h4> <?=$produto["fabricante"]?> </h4>
-                    <p><b>Preço:</b>  </p>
+                    <p><b>Preço: <?=$produto["preco"]?></b>  </p>
                     <p><b>Quantidade:</b> <?=$produto["quantidade"]?> </p>
 
                     <hr>

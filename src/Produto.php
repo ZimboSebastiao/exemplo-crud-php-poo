@@ -43,7 +43,7 @@ final class Produto {
         return $resultado;
     }
 
-    public function inserirProduto():void {
+    public function inserir():void {
     
         $sql = "INSERT INTO produtos(
             nome, preco, quantidade, descricao, fabricante_id
@@ -64,24 +64,7 @@ final class Produto {
         }
     }
 
-
-
-    public function lerUmFabricante():array {
-        $sql = "SELECT * FROM fabricantes WHERE id = :id";
-    
-        try {
-            $consulta = $this->conexao->prepare($sql);
-            $consulta->bindValue(":id", $this->id, PDO::PARAM_INT);
-            $consulta->execute();
-            $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
-        } catch (Exception $erro) {
-            die("Erro ao carregar: ".$erro->getMessage());
-        }
-    
-        return $resultado;
-    } 
-
-    public function lerUmProduto():array {
+    public function lerUm():array {
         $sql = "SELECT * FROM produtos WHERE id = :id";
         try {
             $consulta = $this->conexao->prepare($sql);
@@ -94,22 +77,7 @@ final class Produto {
         return $resultado;
     }
 
-
-    public function atualizarFabricante():void {
-        $sql = "UPDATE fabricantes SET nome = :nome WHERE id = :id";
-        
-        try {
-            $consulta = $this->conexao->prepare($sql);
-            $consulta->bindValue(":nome", $this->nome, PDO::PARAM_STR);
-            $consulta->bindValue(":id", $this->id, PDO::PARAM_INT);
-            $consulta->execute();
-        } catch (Exception $erro) {
-            die("Erro ao atualizar: ".$erro->getMessage());
-        }
-    }
-
-
-    public function atualizarProduto():void {
+    public function atualizar():void {
 
         $sql = "UPDATE produtos SET
             nome = :nome,
@@ -132,19 +100,17 @@ final class Produto {
     }
 
 
-
-
-    // public function excluirFabricante():void {
-    //     $sql = "DELETE FROM fabricantes WHERE id = :id";
-    //     try {
-    //         $consulta = $this->conexao->prepare($sql);
-    //         $consulta->bindValue(":id", $this->id, PDO::PARAM_INT);
-    //         $consulta->execute();
-    //     } catch (Exception $erro) {
-    //         die("Erro ao excluir: ".$erro->getMessage());
-    //     }
-    // } 
-
+    function excluir():void {
+        $sql = "DELETE FROM produtos WHERE id = :id";
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":id", $this->id, PDO::PARAM_INT);
+            $consulta->execute();
+        } catch (Exception $erro) {
+            die("Erro ao excluir: ".$erro->getMessage());
+        }
+    }
+    
 
 
 

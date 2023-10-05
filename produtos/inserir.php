@@ -17,7 +17,7 @@ if(isset($_POST['inserir'])){
     $produto->setQuantidade($_POST['quantidade']);
     $produto->setFabricanteId($_POST['fabricante']);
     $produto->setDescricao($_POST['descricao']);
-    $produto->inserirProduto();
+    $produto->inserir();
 
     header("location:visualizar.php");
 }
