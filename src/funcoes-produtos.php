@@ -3,11 +3,6 @@ require_once "conecta.php";
 
 
 
-
-
-
-
-
 function lerUmProduto(PDO $conexao, int $id):array {
     $sql = "SELECT * FROM produtos WHERE id = :id";
     try {

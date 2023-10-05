@@ -1,9 +1,13 @@
 <?php
+
+use ExemploCrudPoo\Fabricante;
 use ExemploCrudPoo\Produto;
 require_once "../vendor/autoload.php";
 
+$fabricante = new Fabricante;
 
-// $listaDeFabricantes = $fabricante->lerFabricantes();
+
+$listaDeFabricantes = $fabricante->lerFabricantes();
 
 if(isset($_POST['inserir'])){
     $produto = new Produto;
@@ -11,7 +15,7 @@ if(isset($_POST['inserir'])){
     $produto->setNome($_POST['nome']);
     $produto->setPreco($_POST['preco']);
     $produto->setQuantidade($_POST['quantidade']);
-    $produto->setFabricanteId($_POST['fabricante_id']);
+    $produto->setFabricanteId($_POST['fabricante']);
     $produto->setDescricao($_POST['descricao']);
     $produto->inserirProduto();
 
