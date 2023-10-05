@@ -3,31 +3,17 @@ use ExemploCrudPoo\Produto;
 require_once "../vendor/autoload.php";
 
 
-$listaDeFabricantes = lerFabricantes($conexao);
+// $listaDeFabricantes = $fabricante->lerFabricantes();
 
 if(isset($_POST['inserir'])){
     $produto = new Produto;
-    $produto->setNome($_POST['nome']) ;
-    
-    $preco = filter_input(
-        INPUT_POST, "preco", 
-        FILTER_SANITIZE_NUMBER_FLOAT,
-        FILTER_FLAG_ALLOW_FRACTION
-    );
 
-    $quantidade = filter_input(
-        INPUT_POST, "quantidade", FILTER_SANITIZE_NUMBER_INT
-    );
-
-    $fabricanteId = filter_input(
-        INPUT_POST, "fabricante", FILTER_SANITIZE_NUMBER_INT
-    );
-
-    $descricao = filter_input(INPUT_POST, "descricao", FILTER_SANITIZE_SPECIAL_CHARS);
-
-    inserirProduto(
-        $conexao, $nome, $preco, $quantidade, $fabricanteId, $descricao
-    );
+    $produto->setNome($_POST['nome']);
+    $produto->setPreco($_POST['preco']);
+    $produto->setQuantidade($_POST['quantidade']);
+    $produto->setFabricanteId($_POST['fabricante_id']);
+    $produto->setDescricao($_POST['descricao']);
+    $produto->inserirProduto();
 
     header("location:visualizar.php");
 }
