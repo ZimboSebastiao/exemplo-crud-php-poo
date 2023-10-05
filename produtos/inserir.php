@@ -1,11 +1,13 @@
 <?php
-require_once "../src/funcoes-fabricantes.php";
-require_once "../src/funcoes-produtos.php";
+use ExemploCrudPoo\Produto;
+require_once "../vendor/autoload.php";
+
 
 $listaDeFabricantes = lerFabricantes($conexao);
 
 if(isset($_POST['inserir'])){
-    $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
+    $produto = new Produto;
+    $produto->setNome($_POST['nome']) ;
     
     $preco = filter_input(
         INPUT_POST, "preco", 
