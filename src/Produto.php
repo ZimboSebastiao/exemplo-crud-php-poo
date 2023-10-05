@@ -43,21 +43,6 @@ final class Produto {
         return $resultado;
     }
 
-
-    public function inserirFabricante():void {
-        $sql = "INSERT INTO fabricantes(nome) VALUES(:nome)";
-    
-        try {
-            $consulta = $this->conexao->prepare($sql);
-            $consulta->bindValue(":nome", $this->nome, PDO::PARAM_STR);
-            $consulta->execute();
-        } catch (Exception $erro) {
-            die("Erro ao inserir: ".$erro->getMessage());
-        }
-    
-    }
-
-
     public function inserirProduto():void {
     
         $sql = "INSERT INTO produtos(
@@ -81,42 +66,73 @@ final class Produto {
 
 
 
-
-
-
-
-
-
-
-
-    // public function lerUmFabricante():array {
-    //     $sql = "SELECT * FROM fabricantes WHERE id = :id";
+    public function lerUmFabricante():array {
+        $sql = "SELECT * FROM fabricantes WHERE id = :id";
     
-    //     try {
-    //         $consulta = $this->conexao->prepare($sql);
-    //         $consulta->bindValue(":id", $this->id, PDO::PARAM_INT);
-    //         $consulta->execute();
-    //         $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
-    //     } catch (Exception $erro) {
-    //         die("Erro ao carregar: ".$erro->getMessage());
-    //     }
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":id", $this->id, PDO::PARAM_INT);
+            $consulta->execute();
+            $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
+        } catch (Exception $erro) {
+            die("Erro ao carregar: ".$erro->getMessage());
+        }
     
-    //     return $resultado;
-    // } 
+        return $resultado;
+    } 
+
+    public function lerUmProduto():array {
+        $sql = "SELECT * FROM produtos WHERE id = :id";
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":id", $this->id, PDO::PARAM_INT);
+            $consulta->execute();
+            $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
+        } catch (Exception $erro) {
+            die("Erro ao carregar dados: ".$erro->getMessage());
+        }    
+        return $resultado;
+    }
 
 
-    // public function atualizarFabricante():void {
-    //     $sql = "UPDATE fabricantes SET nome = :nome WHERE id = :id";
+    public function atualizarFabricante():void {
+        $sql = "UPDATE fabricantes SET nome = :nome WHERE id = :id";
         
-    //     try {
-    //         $consulta = $this->conexao->prepare($sql);
-    //         $consulta->bindValue(":nome", $this->nome, PDO::PARAM_STR);
-    //         $consulta->bindValue(":id", $this->id, PDO::PARAM_INT);
-    //         $consulta->execute();
-    //     } catch (Exception $erro) {
-    //         die("Erro ao atualizar: ".$erro->getMessage());
-    //     }
-    // }
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":nome", $this->nome, PDO::PARAM_STR);
+            $consulta->bindValue(":id", $this->id, PDO::PARAM_INT);
+            $consulta->execute();
+        } catch (Exception $erro) {
+            die("Erro ao atualizar: ".$erro->getMessage());
+        }
+    }
+
+
+    public function atualizarProduto():void {
+
+        $sql = "UPDATE produtos SET
+            nome = :nome,
+            preco = :preco,
+            quantidade = :quantidade,
+            descricao = :descricao,
+            fabricante_id = :fabricanteId WHERE id = :id";
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":nome", $this->nome, PDO::PARAM_STR);
+            $consulta->bindValue(":preco", $this->preco, PDO::PARAM_STR);
+            $consulta->bindValue(":quantidade", $this->quantidade, PDO::PARAM_INT);
+            $consulta->bindValue(":descricao", $this->descricao, PDO::PARAM_STR);
+            $consulta->bindValue(":fabricanteId", $this->fabricante_id, PDO::PARAM_INT);
+            $consulta->bindValue(":id", $this->id, PDO::PARAM_INT);
+            $consulta->execute();
+        } catch (Exception $erro) {
+            die("Erro ao atualizar: ".$erro->getMessage());
+        }   
+    }
+
+
+
 
     // public function excluirFabricante():void {
     //     $sql = "DELETE FROM fabricantes WHERE id = :id";
