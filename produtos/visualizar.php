@@ -7,7 +7,6 @@ require_once "../vendor/autoload.php";
 $produto = new Produto; 
 
 $listaDeProdutos = $produto->lerProdutos();
-Utilitarios::formatarPreco();
 
 ?>
 <!DOCTYPE html>
@@ -31,9 +30,10 @@ Utilitarios::formatarPreco();
                 <article class="shadow p-2">
                     <h3> <?=$produto["produto"]?> </h3>
                     <h4> <?=$produto["fabricante"]?> </h4>
-                    <p><b>Preço:<?=formatarPreco($produto["preco"])?></b>  </p>
+                    <p><b>Preço:<?=Utilitarios::formatarPreco($produto["preco"])?></b>  </p>
                     <p><b>Quantidade:</b> <?=$produto["quantidade"]?> </p>
-
+                    <p><b>Total:</b>
+                    <?=Utilitarios::calcularTotal($produto["preco"], $produto["quantidade"])?></p>
                     <hr>
                     <p>
                         <a href="atualizar.php?id=<?=$produto["id"]?>">Editar</a> |
